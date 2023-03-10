@@ -48,11 +48,11 @@
       </nav>
     </div>
   </div>
-
+  
   <div class="row">
     <div class="col-lg-12 col-md-12 mt-4">
       <div class="card">
-
+        
         <!--Tab content-->
         <div class="loader br-4 hidden">
           <i class="ik ik-refresh-cw loading"></i>
@@ -94,12 +94,12 @@
 <script type="text/javascript">
   
 $(document).ready(function() {
-
+  
   // get data from serve ajax
   const getDataUrl = "{{ $get_data }}"
   getData(getDataUrl);
-
-
+  
+  
   //show employee
   $(document).on('click','a.show-employee',function(){
     var showUrl = $(this).data('href');

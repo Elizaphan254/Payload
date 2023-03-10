@@ -20,7 +20,7 @@ class EmployeeController extends Controller
             'get_data' => route($this->folder.'getData'),
         ]);
     }
-
+    
     public function getData(){
         return View($this->folder.'content',[
             'add_new' => route($this->folder.'create'),
@@ -29,19 +29,27 @@ class EmployeeController extends Controller
             'employees' => Employee::get(),
         ]);
     }
-
+    
     //not use now : 03-05-2021 @auther : kdvamja
     public function getDataTable(){
         $employees = Employee::get();
         return Datatables::of($employees)
                     ->addIndexColumn()
-                    ->addColumn('avatar', function($data){
-                        $avatar = "<img src='".$data->mediaUrl['thumb']."' class='table-user-thumb'>";
-                        return $avatar;
+                    // ->addColumn('avatar', function($data){
+                    //     $avatar = "<img src='".$data->mediaUrl['thumb']."' class='table-user-thumb'>";
+                    //     return $avatar;
+                    // })
+                    ->addColumn('staff', function($data){
+                            $staff = "<span class='success-dot' title='Active' title='Active Employee'></span>";
+                            "<div class=''>
+                            <b>staff No :</b> <span>".$data->staffno."</span></br>
+                            <b>Name :</b> <span>".$data->staffnames."</span></br>
+                            </div>";                            
+                            return $staff;
                     })
-                    ->addColumn('is_active', function($data){
-                        if($data->is_active == '1'){
-                            $status = "<span class='success-dot' title='Published' title='Active Employee'></span>";
+                    ->addColumn('status', function($data){
+                        if($data->status == '1'){
+                            $status = "<span class='success-dot' title='Active' title='Active Employee'></span>";
                         }else{
                             $status = "<i class='ik ik-alert-circle text-danger alert-status' title='In-Active Employee'></i>";
                         }
@@ -50,27 +58,27 @@ class EmployeeController extends Controller
                     ->addColumn('details', function($data){
                         $details = "<div class=''>
                         		<b>Gender :</b> <span>".$data->gender."</span></br>
-                                <b>Employee Id :</b> <span>".$data->employee_id."</span></br>
-                        		<b>Schedule :</b> <span>".$data->schedule->time_in.'-'.$data->schedule->time_out."</span></br>
-                        		<b>Address :</b> <span>".$data->address."</span></br>
+                                <b>Id No.:</b> <span>".$data->idno."</span></br>
+                        		<b>Cellphone :</b> <span>".$data->cellphone."</span></br>
+                        		<b>Email :</b> <span>".$data->email."</span></br>
                         		</div>";
                         return $details;
                     })
-                    ->addColumn('position', function($data){
-                        return $data->position->title;
+                    ->addColumn('department', function($data){
+                        return $data->department;
                     })
                     ->addColumn('action', function($data){
                             $btn = "<div class='table-actions'>
-                            <a data-href='".route($this->folder.'show',['employee_id'=>$data->employee_id])."' class='show-employee cursure-pointer'><i class='ik ik-eye text-primary'></i></a>
-                            <a href='".route($this->folder."edit",['employee_id'=>$data->employee_id])."'><i class='ik ik-edit-2 text-dark'></i></a>
+                            <a data-href='".route($this->folder.'show',['employee_id'=>$data->id])."' class='show-employee cursure-pointer'><i class='ik ik-eye text-primary'></i></a>
+                            <a href='".route($this->folder."edit",['employee_id'=>$data->id])."'><i class='ik ik-edit-2 text-dark'></i></a>
                             <a data-href='".route($this->folder."destroy",['id'=>$data->id])."' class='delete cursure-pointer'><i class='ik ik-trash-2 text-danger'></i></a>
                             </div>";
                             return $btn;
                     })
-                    ->rawColumns(['action','avatar','is_active','position','details'])
+                    ->rawColumns(['action','staff','status','department','details'])
                     ->toJson();
     }
-
+    
     public function create()
     {   
         $schedules = Schedule::get();

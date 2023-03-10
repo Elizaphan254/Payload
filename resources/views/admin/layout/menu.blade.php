@@ -3,7 +3,7 @@
         <div class="nav-item {{ request()->routeIs(['admin.dashboard']) ? 'active' : '' }}">
             <a href="{{ route('admin.dashboard') }}"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
         </div>
-
+        
         <div class="nav-lavel">Manage Employees</div>
         <div class="nav-item has-sub {{ request()->routeIs('admin.employee.*') ? 'active open' : '' }} {{ request()->routeIs('admin.overtime.*') ? 'active open' : '' }} {{ request()->routeIs('admin.cashadvance.*') ? 'active open' : '' }}">
             <a href="javascript:void(0)"><i class="ik users ik-users"></i><span>Employees</span> 
@@ -21,14 +21,14 @@
             </div>
         </div>
 
-        <div class="nav-item has-sub {{ request()->routeIs('admin.attendance.*') ? 'active open' : '' }}">
+        {{-- <div class="nav-item has-sub {{ request()->routeIs('admin.attendance.*') ? 'active open' : '' }}">
             <a href="javascript:void(0)"><i class="ik ik-check-circle"></i><span>Attendance</span> 
             </a>
             <div class="submenu-content">
                 <a href="{{ route('admin.attendance.create') }}" class="menu-item {{ request()->routeIs('admin.attendance.create') ? 'active' : '' }}"><i class="ik ik-plus-circle"></i>Add New Attendance</a>
                 <a href="{{ route('admin.attendance.index') }}" class="menu-item {{ request()->routeIs('admin.attendance.index') ? 'active' : '' }}"><i class="ik file-text ik-file-text"></i>List Of Attendance</a>
             </div>
-        </div>
+        </div> --}}
 
         <div class="nav-item {{ request()->routeIs(['admin.payroll.*']) ? 'active' : '' }}">
             <a href="{{ route('admin.payroll.index') }}"><i class="ik ik-dollar-sign"></i><span>Payroll</span></a>

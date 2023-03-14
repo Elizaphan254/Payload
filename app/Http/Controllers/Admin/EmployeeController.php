@@ -13,7 +13,7 @@ use Mail;
 class EmployeeController extends Controller
 {
     private $folder = "admin.employee.";
-
+    
     public function index()
     {
         return View($this->folder.'index',[
@@ -81,13 +81,8 @@ class EmployeeController extends Controller
     
     public function create()
     {   
-        $schedules = Schedule::get();
-        $positions = Position::get();
         return View($this->folder."create",[
-            'form_store' => route($this->folder.'store'),
-            'schedules' => $schedules,
-            'positions' => $positions,
-        ]);
+            'form_store' => route($this->folder.'store')]);
     }
     
     public function store(EmployeeRequest $request)

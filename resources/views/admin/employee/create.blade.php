@@ -49,8 +49,8 @@
 </div>
 
 <div class="row">
-    <div class="col-md-8 col-sm-12 col-xl-8 offset-md-2 offset-xl-2">
-
+    <div class="col-md-12 col-sm-12 col-xl-12">
+        
         <div class="widget overflow-visible">
             <div class="progress progress-sm progress-hi-3 hidden">
                 <div class="progress-bar bg-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
@@ -65,22 +65,33 @@
                         <h5 class="text-secondary">Create Employee</h5>
                     </div>
                 </div>
-
+                
                 <form action="{{ $form_store }}" method="POST" enctype="multipart/form-data" id="createEmployee">
-                    @csrf
+                    @csrf 
                     <div class="row">
-                      <div class="col-md-6 col-lg-6 col-sm-12">
+                      <div class="col-md-3 col-lg-3 col-sm-6">
                        <div class="form-group">
-                        <label for="first_name">First Name</label><small class="text-danger">*</small>
-                        <input type="text" name="first_name" class="form-control" id="first_name" placeholder="John" autocomplete="off">
-                        <small class="text-danger err" id="first_name-err"></small>
+                        <label for="staffno">Staff No.</label><small class="text-danger">*</small>
+                        <input type="text" name="staffno" class="form-control" id="staffno" placeholder="AUTO" value ="AUTO">
+                        <small class="text-danger err" id="staffno-err"></small>
                       </div>
                       </div>
                       <div class="col-md-6 col-lg-6 col-sm-12">
                        <div class="form-group">
-                        <label for="last_name">Last Name</label><small class="text-danger">*</small>
-                        <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Duo" autocomplete="off">
-                        <small class="text-danger err" id="last_name-err"></small>
+                        <label for="staffnames">Names</label><small class="text-danger">*</small>
+                        <input type="text" name="staffnames" class="form-control" id="staffnames" placeholder="Kimathi Kimakia" autocomplete="off">
+                        <small class="text-danger err" id="staffnames-err"></small>
+                      </div>
+                      </div>
+                      <div class="col-md-3 col-lg-3 col-sm-6">
+                       <div class="form-group">
+                        <label for="status">Status</label><small class="text-danger">*</small>
+                        <select class="form-control" id="status" name="status" required>
+                            <option selected value disabled>choose</option>
+                            <option value="1">Active</option>
+                            <option value="0">Terminated</option>
+                          </select>
+                        <small class="text-danger err" id="status-err"></small>
                       </div>
                       </div>
                     </div>
@@ -88,7 +99,7 @@
                       <div class="col-md-12 col-lg-12 col-sm-12">
                         <div class="form-group">
                           <label for="email">Email</label><small class="text-danger">*</small>
-                          <input type="email" name="email" class="form-control" id="email" placeholder="john@example.com" autocomplete="off">
+                          <input type="email" name="email" class="form-control" id="email" placeholder="admin@brainsft.co.ke" autocomplete="off">
                           <input type="hidden" name="username">
                           <small class="text-danger err" id="email-err"></small>
                         </div>
@@ -98,11 +109,10 @@
                       <div class="col-md-4 col-lg-4 col-sm-12">
                         <div class="form-group">
                           <label for="gender">Gender </label><small class="text-danger">*</small>
-                          <select class="form-control" id="gender" name="gender">
+                          <select class="form-control" id="gender" name="gender" required>
                             <option selected value disabled>choose</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
-                            <option value="Other">Other</option>
                           </select>
                           <small class="text-danger err" id="gender-err"></small>
                         </div>
@@ -127,38 +137,12 @@
                        <div class="form-group">
                         <label for="position_id">Position</label><small class="text-danger">*</small>
                         <select class="form-control" name="position_id" id="position_id">
-                          @foreach($positions as $position)
-                            <option value="{{ $position->id }}">{{ $position->title }}</option>
-                          @endforeach
+                          <option value="Accountant">Accountant</option>
+                          <option value="Cashier">Cashier</option>
+                          <option value="Admin">Admin</option>
+                          <option value="Sales">Sales</option>
                         </select>
                         <small class="text-danger err" id="position_id-err"></small>
-                      </div>
-                      </div>
-                      <div class="col-md-6 col-lg-6 col-sm-12">
-                       <div class="form-group">
-                        <label for="schedule_id">Schedule</label><small class="text-danger">*</small>
-                        <select class="form-control" name="schedule_id" id="schedule_id">
-                          @foreach($schedules as $schedule)
-                            <option value="{{ $schedule->id }}">{{ $schedule->time_in.'-'.$schedule->time_out }}</option>
-                          @endforeach
-                        </select>
-                        <small class="text-danger err" id="schedule_id-err"></small>
-                      </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6 col-lg-6 col-sm-12">
-                       <div class="form-group">
-                        <label for="rate_per_hour">Rate Per Hour</label><small class="text-danger">*</small>
-                        <input type="text" name="rate_per_hour" class="form-control" id="rate_per_hour" placeholder="200.00" autocomplete="off">
-                        <small class="text-danger err" id="rate_per_hour-err">It's important for Payscal calculation.</small>
-                      </div>
-                      </div>
-                      <div class="col-md-6 col-lg-6 col-sm-12">
-                       <div class="form-group">
-                        <label for="salary">Salery</label><small class="text-danger">*</small>
-                        <input type="text" name="salary" class="form-control" id="salary" placeholder="45000.00" autocomplete="off">
-                        <small class="text-danger err" id="salary-err">It's just informaton purpose. it will not reflect on payslip.</small>
                       </div>
                       </div>
                     </div>
@@ -205,7 +189,7 @@
                     </div>
                 </form>
             </div>
-
+        
         </div>
     </div>
 </div>
@@ -234,7 +218,7 @@
           </div>
         </div>
       </div>
-
+    
     </div>
   </div>
 </div>
@@ -267,12 +251,12 @@ $(document).ready(function($) {
   $('#birthdate').datetimepicker({
     format: 'LL'
   });
-
+  
   $("#createEmployee").submit(function(event){
     event.preventDefault();
     createForm("#createEmployee");
   }); 
-
+  
   $('#avatar').on('change', function () { 
     var reader = new FileReader();
     reader.onload = function (e) {
@@ -283,7 +267,7 @@ $(document).ready(function($) {
     reader.readAsDataURL(this.files[0]);
     $model.modal('show');
   });
-
+  
   //crop and save image
   $('#crop-nd-save').on('click', function (ev) {
     $uploadCrop.croppie('result', {
@@ -315,7 +299,7 @@ $(document).ready(function($) {
       });
     });
   });
-
+  
   //remove current saved image
   $("#remove-avatar-profile").on('click',function(e){
     e.preventDefault();

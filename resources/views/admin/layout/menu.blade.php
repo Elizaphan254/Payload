@@ -5,8 +5,8 @@
         </div>
         
         <div class="nav-lavel">Manage Employees</div>
-        <div class="nav-item has-sub {{ request()->routeIs('admin.employee.*') ? 'active open' : '' }} {{ request()->routeIs('admin.overtime.*') ? 'active open' : '' }} {{ request()->routeIs('admin.cashadvance.*') ? 'active open' : '' }}">
-            <a href="javascript:void(0)"><i class="ik users ik-users"></i><span>Employees</span> 
+        <div class="nav-item has-sub {{ request()->routeIs('admin.employee.*') ? 'active open' : '' }}">
+            <a href="javascript:void(0)"><i class="fa users fa-users"></i><span>Employees</span> 
                 @if($counts['employees'] != 0)
                 <span title="Total Records" class="badge badge-light text-dark">
                     {{ $counts['employees'] }}
@@ -16,11 +16,9 @@
             <div class="submenu-content">
                 <a href="{{ route('admin.employee.create') }}" class="menu-item {{ request()->routeIs('admin.employee.create') ? 'active' : '' }}"><i class="ik ik-user-plus"></i>Add New Employee</a>
                 <a href="{{ route('admin.employee.index') }}" class="menu-item {{ request()->routeIs('admin.employee.index') ? 'active' : '' }}"><i class="ik file-text ik-file-text"></i>List Of Employees</a>
-                <a href="{{ route('admin.overtime.index') }}" class="menu-item {{ request()->routeIs('admin.overtime.*') ? 'active' : '' }}"><i class="ik watch ik-watch"></i>Overtime</a>
-                <a href="{{ route('admin.cashadvance.index') }}" class="menu-item {{ request()->routeIs('admin.cashadvance.index') ? 'active' : '' }}"><i class="ik at-sign ik-at-sign"></i>Cash Advance</a>
             </div>
         </div>
-
+        
         {{-- <div class="nav-item has-sub {{ request()->routeIs('admin.attendance.*') ? 'active open' : '' }}">
             <a href="javascript:void(0)"><i class="ik ik-check-circle"></i><span>Attendance</span> 
             </a>
@@ -29,14 +27,14 @@
                 <a href="{{ route('admin.attendance.index') }}" class="menu-item {{ request()->routeIs('admin.attendance.index') ? 'active' : '' }}"><i class="ik file-text ik-file-text"></i>List Of Attendance</a>
             </div>
         </div> --}}
-
+        
         <div class="nav-item {{ request()->routeIs(['admin.payroll.*']) ? 'active' : '' }}">
             <a href="{{ route('admin.payroll.index') }}"><i class="ik ik-dollar-sign"></i><span>Payroll</span></a>
         </div>
-
+        
         <div class="nav-lavel">Manage Site</div>
 
-        <div class="nav-item has-sub {{ request()->routeIs('admin.position.*') ? 'active open' : '' }}">
+        {{-- <div class="nav-item has-sub {{ request()->routeIs('admin.position.*') ? 'active open' : '' }}">
             <a href="javascript:void(0)"><i class="ik ik-briefcase"></i><span>Positions</span> 
                 @if($counts['positions'] != 0)
                 <span title="Total Records" class="badge badge-light text-dark">
@@ -48,9 +46,9 @@
                 <a href="{{ route('admin.position.create') }}" class="menu-item {{ request()->routeIs('admin.position.create') ? 'active' : '' }}"><i class="ik ik-plus-circle"></i>Add New Position</a>
                 <a href="{{ route('admin.position.index') }}" class="menu-item {{ request()->routeIs('admin.position.index') ? 'active' : '' }}"><i class="ik file-text ik-file-text"></i>List Of Position</a>
             </div>
-        </div>
+        </div> --}}
 
-        <div class="nav-item has-sub {{ request()->routeIs('admin.deduction.*') ? 'active open' : '' }}">
+        {{-- <div class="nav-item has-sub {{ request()->routeIs('admin.deduction.*') ? 'active open' : '' }}">
             <a href="javascript:void(0)"><i class="ik file-minus ik-file-minus"></i><span>Deductions</span> 
                 @if($counts['deductions'] != 0)
                 <span title="Total Records" class="badge badge-light text-dark">
@@ -90,7 +88,7 @@
             <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
-        </div>
+        </div> --}}
         
     </nav>
 </div>

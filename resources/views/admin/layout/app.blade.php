@@ -3,13 +3,13 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>@yield('title') | PeSystem - A System for HR Payment Generator.</title>
+        <title>@yield('title') | PayLOAD - A Payroll System(brainKE).</title>
         <meta name="description" content="">
         <meta name="keywords" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="icon" href="{{ asset('admin_assets/favicon.ico') }}" type="image/x-icon" />
-
+        
         <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
         
         <link rel="stylesheet" href="{{ asset('admin_assets/plugins/bootstrap/dist/css/bootstrap.min.css') }}">
@@ -36,9 +36,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/dist/css/site-style.css') }}">
         @yield('css')
-
+    
     </head>
-
+    
     <body>
         
         <div class="wrapper">
@@ -56,17 +56,17 @@
                             <div class="dropdown">
                                 <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="avatar" src="{{ asset('admin_assets/avatars/admin/admin.png') }}" alt=""></a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="{{ route('admin.profile.index') }}"><i class="ik ik-user dropdown-icon"></i> Profile</a>
+                                    <a class="dropdown-item" href="{{ route('admin.profile.index') }}"><i class="fa fa-user dropdown-icon"></i> Profile</a>
                                     
                                     <a class="dropdown-item" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="ik ik-power dropdown-icon"></i> Logout</a>
                                 </div>
                             </div>
-
+                        
                         </div>
                     </div>
                 </div>
             </header>
-
+            
             <div class="page-wrap">
                 <div class="app-sidebar colored">
                     <div class="sidebar-header">
@@ -74,8 +74,8 @@
                             <div class="logo-img">
                                <img src="{{ asset('./admin_assets/tile_192.png') }}" width="32">
                             </div>
-                            <small class="text pl-2"><b>Pe</b>System</small>
-
+                            <small class="text pl-2"><b>Brke</b>Pay</small>
+                        
                         </a>
                         <button type="button" class="nav-toggle"><i data-toggle="expanded" class="ik ik-toggle-right toggle-icon"></i></button>
                         <button id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></button>
@@ -92,13 +92,16 @@
                         
                     </div>
                 </div>
-
                 
-
+                
+                
                 <footer class="footer">
                     <div class="w-100 clearfix">
-                        <span class="text-center text-sm-left d-md-inline-block">copyright@2021 - PeSystem Inc.</span>
-                        
+                        <span class="float-left d-inline-block"><?php echo date('Y');?> &copy; Brainsoft Technologies Ltd</span>
+                        <span class="float-right d-sm-inline-block d-none">Crafted with
+                            <i class="ik ik-heart pink mx-50 font-small-3"></i> by
+                            <a class="text-uppercase" href="https://brainsoft.co.ke">BrainKe Labs</a>
+                        </span>
                     </div>
                 </footer>
                 
@@ -107,7 +110,7 @@
         
         
         
-
+        
         
         
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

@@ -1,7 +1,7 @@
 <?php
 
 /*application configration routes*/
-/*
+
 Route::group(['prefix'=>'clear'],function(){
 	Route::get('cache', function () {
 	    \Artisan::call('cache:clear');
@@ -26,6 +26,12 @@ Route::get('config-cache', function () {
 	dd("Config is cached.");
 });
 
+Route::get('art', function () {
+	return Brkepay::getNextNumber('STAFF');
+	$output = Artisan::output();
+	dd($output);
+});
+/*
 Route::get('storage-link', function () {
 	\Artisan::call('storage:link');
 	dd("Storage link successfully.");

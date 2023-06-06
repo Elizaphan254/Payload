@@ -8,21 +8,32 @@ class Employee extends Model
 {
     
     protected $fillable = [
-        'employee_id',
-        'first_name',
-        'last_name',
-        'phone',
-        'email',
-        'birthdate',
-        'media_id',
-        'address',
+        'staffno',
+        'staffnames',
+        'idno',
         'gender',
-        'remark',
-        'position_id',
-        'schedule_id',
-        'rate_per_hour',
-        'salary',
-        'is_active',
+        'status',
+        'pinno',
+        'nhifno',
+        'nssfno',
+        'cellphone',
+        'email',
+        'dob',
+        'emp_date',
+        'department',
+        'payetype',
+        'no_relief',
+        'nhif_relief',
+        'pobox',
+        'nationality',
+        'marital',
+        'paymode',
+        'bank',
+        'branch',
+        'accountno',
+        'nok',
+        'nokcellphone',
+        'nokrelation',
     ];
     
     protected $hidden = [
@@ -42,38 +53,18 @@ class Employee extends Model
     
     public function getRouteKeyName()
     {
-        return 'employee_id';
+        return 'id';
     }
     
-    public function setFirstNameAttribute($value){
-        $this->attributes['first_name'] = ucwords($value);
-    }
-    
-    public function setLastNameAttribute($value){
-        $this->attributes['last_name'] = ucwords($value);
-    }
-    
-    protected static function boot()
-    {
-    	parent::boot();
-    	static::creating(function($employee){
-    		$employee->employee_id = strtoupper(uniqid("EMP"));
-    	});
+    public function setStaffNameAttribute($value){
+        $this->attributes['stafnames'] = ucwords($value);
     }
 
-    public function registerMediaCollections(){
-        $this->addMediaCollection('avatar')
-            ->singleFile()
-            ->registerMediaConversions(function(Media $media){
-                $this->addMediaConversion('thumb')
-                ->format('png')
-                ->width(128)
-                ->height(128);
-            });
-    }
-    
-    // public function position(){
-    //     return $this->hasOne(Position::class,'id','position_id');
+    // protected static function boot()
+    // {
+    // 	//parent::boot();
+    // 	// static::creating(function($employee){
+    // 	// 	$employee->employee_id = strtoupper(uniqid("EMP"));
+    // 	// });
     // }
-    
 }

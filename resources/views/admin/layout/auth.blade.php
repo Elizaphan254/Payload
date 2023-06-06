@@ -22,7 +22,7 @@
 
         @yield('css')
     </head>
-
+    
     <body>
         
         <div class="auth-wrapper">

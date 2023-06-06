@@ -68,8 +68,8 @@ return [
     */
 
     // 'timezone' => 'UTC',
-    'timezone' => 'Asia/Kolkata',
-
+    'timezone' => 'Africa/Nairobi',
+    
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
@@ -80,9 +80,9 @@ return [
     | to any of the locales which will be supported by the application.
     |
     */
-
+    
     'locale' => 'en',
-
+    
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
@@ -93,9 +93,9 @@ return [
     | the language folders that are provided through your application.
     |
     */
-
+    
     'fallback_locale' => 'en',
-
+    
     /*
     |--------------------------------------------------------------------------
     | Faker Locale
@@ -106,9 +106,9 @@ return [
     | localized telephone numbers, street address information and more.
     |
     */
-
+    
     'faker_locale' => 'en_US',
-
+    
     /*
     |--------------------------------------------------------------------------
     | Encryption Key
@@ -119,11 +119,11 @@ return [
     | will not be safe. Please do this before deploying an application!
     |
     */
-
+    
     'key' => env('APP_KEY'),
-
+    
     'cipher' => 'AES-256-CBC',
-
+    
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -134,9 +134,9 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
-
+    
     'providers' => [
-
+        
         /*
          * Laravel Framework Service Providers...
          */
@@ -162,11 +162,11 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        
         /*
          * Package Service Providers...
          */
-
+        
         /*
          * Application Service Providers...
          */
@@ -176,6 +176,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
+        App\Providers\brkepayServiceProvider::class,
     
     ],
     

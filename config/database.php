@@ -69,7 +69,7 @@ return [
             'schema' => 'public',
             'sslmode' => 'prefer',
         ],
-
+        
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'host' => env('DB_HOST', 'localhost'),
@@ -81,9 +81,9 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
         ],
-
+    
     ],
-
+    
     /*
     |--------------------------------------------------------------------------
     | Migration Repository Table
@@ -107,25 +107,25 @@ return [
     | such as APC or Memcached. Laravel makes it easy to dig right in.
     |
     */
-
+    
     'redis' => [
-
+        
         'client' => 'predis',
-
+        
         'default' => [
             'host' => env('REDIS_HOST', '127.0.0.1'),
             'password' => env('REDIS_PASSWORD', null),
             'port' => env('REDIS_PORT', 6379),
             'database' => env('REDIS_DB', 0),
         ],
-
+        
         'cache' => [
             'host' => env('REDIS_HOST', '127.0.0.1'),
             'password' => env('REDIS_PASSWORD', null),
             'port' => env('REDIS_PORT', 6379),
             'database' => env('REDIS_CACHE_DB', 1),
         ],
-
+    
     ],
 
 ];

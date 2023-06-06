@@ -1,6 +1,6 @@
 @extends('admin.layout.auth')
 
-@section('title') Login | Pe System Admin  @endsection
+@section('title') Login | BrkePAY  @endsection
 
 @section('css')
 <style type="text/css">
@@ -12,11 +12,11 @@
 
 <div class="authentication-form mx-auto">
     <div class="logo-centered">
-        <h2><b>Pe<font color="#f05138">.</font></b></h2>
+        <h2><b>BrainKe<font color="#f05138">.</font></b></h2>
     </div>
-    <h3>Sign In to Pe System</h3>
+    <h3>Sign In to BrkePAY</h3>
     <p>Happy to see you again!</p>
-
+    
     @if($errors->any())
     <div class="alert bg-danger text-light alert-dismissible fade show" role="alert">
         @foreach ($errors->all() as $error)
@@ -27,7 +27,7 @@
         </button>
     </div>
     @endif
-
+    
     <form action="{{ $form_url }}" method="post">
         @method('POST')
         @csrf

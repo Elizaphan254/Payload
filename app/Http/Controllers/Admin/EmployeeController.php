@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\{Employee,Schedule,Position};
+use App\{Employee,department,bank,pr_incomes_deduction};
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\EmployeeRequest;
-use App\Mail\StaffCreated;
+use Carbon\Carbon;
 use DataTables;
-use Mail;
-
+use Brkepay;
+use DB;
 class EmployeeController extends Controller
 {
     private $folder = "admin.employee.";
@@ -69,8 +68,8 @@ class EmployeeController extends Controller
                     })
                     ->addColumn('action', function($data){
                             $btn = "<div class='table-actions'>
-                            <a data-href='".route($this->folder.'show',['employee_id'=>$data->id])."' class='show-employee cursure-pointer'><i class='ik ik-eye text-primary'></i></a>
-                            <a href='".route($this->folder."edit",['employee_id'=>$data->id])."'><i class='ik ik-edit-2 text-dark'></i></a>
+                            <a data-href='".route($this->folder.'show',['id'=>$data->id])."' class='show-employee cursure-pointer'><i class='ik ik-eye text-primary'></i></a>
+                            <a href='".route($this->folder."edit",['id'=>$data->id])."'><i class='ik ik-edit-2 text-dark'></i></a>
                             <a data-href='".route($this->folder."destroy",['id'=>$data->id])."' class='delete cursure-pointer'><i class='ik ik-trash-2 text-danger'></i></a>
                             </div>";
                             return $btn;
@@ -81,49 +80,78 @@ class EmployeeController extends Controller
     
     public function create()
     {   
+        $now=Carbon::today()->toDateString();
+        $dobDEFAULT=Carbon::today()->subYear(25)->toDateString();
+        $departments=department::all();
+        $banks=bank::where('status',1)->cursor();
+        $princdeds=pr_incomes_deduction::where('status',1)->cursor();
         return View($this->folder."create",[
-            'form_store' => route($this->folder.'store')]);
+            'form_store' => route($this->folder.'store')])->with(['today'=>$now,'dobDEFAULT'=>$dobDEFAULT,'departments'=>$departments,'banks'=>$banks,'princdeds'=>$princdeds]);
     }
     
-    public function store(EmployeeRequest $request)
-    {   
-        $data = [
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'birthdate' => $request->birthdate,
-            'gender' => $request->gender,
-            'schedule_id' => $request->schedule_id,
-            'position_id' => $request->position_id,
-            'address' => $request->address,
-            'remark' => $request->remark,
-            'rate_per_hour' => $request->rate_per_hour,
-            'salary' => $request->salary,
-            'is_active' => $request->is_active,
-        ];
-        $employee = Employee::create($data);
-        //below here i am save the image which is given by user and save that id to our parent table as a foreign key
-        if($request->has('media') && file_exists(storage_path('media/uploads/'.$request->input('media')))){
-            $media = $employee->addMedia(storage_path('media/uploads/' . $request->input('media')))->toMediaCollection('avatar');
-            $employee->media_id = $media->id;
-            $employee->save(); // save media_id here
-        }
-
-        // Mail::to($employee->email)->send(new StaffCreated($data));
-        return response()->json([
-            'status'=>true,
-            'message'=>'New Employee created successfully.',
-            'redirect_to' => route($this->folder.'index')
-            ]);
+    public function store(Request $request)
+    {
+        //DB::beginTransaction();
+        // try {
+            // $this->validate($request,[
+            //     'staffnames' => 'required',
+            //     'status' => 'required|min:1',
+            //     'idno' => 'required|unique|min:7',
+            //     'gender' => 'required|min:1',
+            //     'dob' => 'required',
+            //     'empdate' => 'required'
+            // ]);
+            $_staffNo=Brkepay::getNextNumber('STAFF');
+            $data = [
+                'staffno' => $_staffNo,
+                'staffnames' => $request->staffnames,
+                'idno' => $request->idno,
+                'gender' => $request->gender,
+                'status' => $request->status,
+                'pinno' => $request->pinno,
+                'nhifno' => $request->nhifno,
+                'nssfno' => $request->nssfno,
+                'payetype' => $request->payetype,
+                'no_relief' =>($request->no_relief=='on'? 1: 0),
+                'nhif_relief' => ($request->nhif_relief=='on'? 1: 0),
+                'department' => $request->department,
+                'dob' => $request->dob,
+                'emp_date' => $request->empdate,
+                'cellphone' => $request->cellphone,
+                'email' => $request->email,
+                'pobox' => $request->pobox,
+                'nationality' => $request->nationality,
+                'marital' => $request->marital,
+                'paymode' => $request->paymode,
+                'bank' => $request->bank,
+                'branch' => $request->branch,
+                'accountno' => $request->accountno,
+                'nok' => $request->nok,
+                'nokcellphone' => $request->nokcellphone,
+                'nokrelation' => $request->nokrelation,
+            ];
+            $employee = Employee::create($data);
+            $employee->save();
+            //DB::commit();
+            return response()->json([
+                'status' => true,
+                'message' => 'Staff Created Successfully'
+            ], 200);
+        // } catch (\Throwable $th) {
+        //     // DB::rollBack();
+        //     return response()->json([
+        //         'status' => false,
+        //         'message' => $th->getMessage()
+        //     ], 500);
+        // }  
     }
-
+    
     public function show(Employee $employee){   
         return View($this->folder.'show',[
             'employee'=>$employee,
         ]);
     }
-
+    
     public function edit(Employee $employee)
     {
         $schedules = Schedule::get();
@@ -139,7 +167,7 @@ class EmployeeController extends Controller
                 'collection'=>'avatar']),
         ]);
     }
-
+    
     public function update(EmployeeRequest $request, Employee $employee)
     {
         $data = [
@@ -158,7 +186,7 @@ class EmployeeController extends Controller
             'is_active' => $request->is_active,
         ];
         $employee->update($data);
-
+        
         if($request->has('media') && file_exists(storage_path('media/uploads/'.$request->input('media')))){
             $media = $employee->addMedia(storage_path('media/uploads/' . $request->input('media')))->toMediaCollection('avatar');
             $employee->media_id = $media->id;
@@ -167,7 +195,7 @@ class EmployeeController extends Controller
 
         return response()->json([
             'status'=>true,
-            'message'=> $employee->employee_id.' updated successfully.',
+            'message'=>'updated successfully.',
             'redirect_to' => route($this->folder.'index')
             ]);
     }

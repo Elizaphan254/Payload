@@ -16,7 +16,7 @@ class EmployeeValidity implements Rule
      */
     public function passes($attribute, $value)
     {
-        $employee = Employee::where('id',$value)->orWhere("employee_id",$value)->first();
+        $employee = Employee::where('id',$value)->orWhere("id",$value)->first();
         if($employee){
             return true;
         }

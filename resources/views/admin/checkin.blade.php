@@ -1,6 +1,6 @@
 @extends('admin.layout.auth')
 
-@section('title') Check-In | Pe System Admin  @endsection
+@section('title') Check-In | BrkePAY  @endsection
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('admin_assets/plugins/sweetalert/dist/bootstrap-4.min.css') }}">
@@ -17,9 +17,9 @@
 
 <div class="authentication-form mx-auto">
     <div class="logo-centered">
-        <h2><b>Pe<font color="#f05138">.</font></b></h2>
+        <h2><b>brainKE<font color="#f05138">.</font></b></h2>
     </div>
-    <h3>Check-In/Out to Pe System</h3>
+    <h3>Check-In/Out to BrkePAY</h3>
     <p class="text-center">Happy to see you again!</p>
     <p class="clearfix border border-time">
       <span class="float-left" id="date"></span>  

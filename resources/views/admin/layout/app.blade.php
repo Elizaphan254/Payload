@@ -35,6 +35,8 @@
         <script src="{{ asset('admin_assets/src/js/vendor/modernizr-2.8.3.min.js') }}"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/dist/css/site-style.css') }}">
+        {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/> --}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
         @yield('css')
     
     </head>
@@ -77,7 +79,7 @@
                             <small class="text pl-2"><b>Brke</b>Pay</small>
                         
                         </a>
-                        <button type="button" class="nav-toggle"><i data-toggle="expanded" class="ik ik-toggle-right toggle-icon"></i></button>
+                        {{-- <button type="button" class="nav-toggle"><i data-toggle="expanded" class="ik ik-toggle-right toggle-icon"></i></button> --}}
                         <button id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></button>
                     </div>
                     
@@ -113,9 +115,11 @@
         
         
         
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        {{-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> --}}
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
         <script>window.jQuery || document.write('<script src="src/js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+        {{-- <script>window.jQuery || document.write('<script src="src/js/vendor/jquery-3.6.0.min.js"><\/script>')</script> --}}
         <script src="{{ asset('admin_assets/plugins/popper.js/dist/umd/popper.min.js') }}"></script>
         <script src="{{ asset('admin_assets/plugins/bootstrap/dist/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('admin_assets/plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js') }}"></script>
@@ -143,11 +147,13 @@
         <script src="{{ asset('admin_assets/plugins/jquery.repeater/jquery.form-repeater.min.js')}}"></script>
         {{-- <script src="http://malsup.github.com/jquery.form.js"></script> --}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
-
+        
         <script src="{{ asset('admin_assets/plugins/sweetalert/dist/sweetalert.min.js') }}"></script>
         <script src="{{ asset('admin_assets/dist/js/theme.min.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js"></script>
         <script type="text/javascript" src="{{ asset('admin_assets/src/js/site-scripts.js') }}"></script>
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"></script> --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -157,7 +163,7 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X','auto');ga('send','pageview');
         </script>
-
+        
         @yield('js')
     </body>
 </html>
